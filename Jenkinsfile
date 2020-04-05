@@ -23,9 +23,11 @@ node {
     }
 
     stage('Maven build') {
-	    echo 'echo Maven build...'
+	    echo 'echo Maven build jiraSendBuildInfo start...'
+	     jiraSendBuildInfo site: 'balajisubramanian.atlassian.net'
+	    echo 'echo Maven jiraSendBuildInfo end ...'
         buildInfo = rtMaven.run pom: 'pom.xml', goals: 'clean install'
-	    	       echo 'buildInfo rtMaven'
+	    	       echo 'echo buildInfo rtMaven'
            jiraSendBuildInfo site: 'balajisubramanian.atlassian.net'
     }
 
