@@ -34,7 +34,7 @@ public class login_junit {
 		MockHttpServletResponse response = new MockHttpServletResponse(); response.setContentType("text/html;charset=UTF-8");
 		request.addParameter("username", "guest");
 		request.addParameter("userpassword", "guest");
-		
+		System.out.println("Hello");
 		obj.doPost(request, response);
 		
 	}
