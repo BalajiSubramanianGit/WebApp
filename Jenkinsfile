@@ -25,6 +25,8 @@ node {
     stage('Maven build') {
 	    echo 'echo Maven build...'
         buildInfo = rtMaven.run pom: 'pom.xml', goals: 'clean install'
+	    	       echo 'buildInfo rtMaven'
+           jiraSendBuildInfo site: 'balajisubramanian.atlassian.net'
     }
 
     stage('Publish build info') {
