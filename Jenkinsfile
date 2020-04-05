@@ -26,7 +26,6 @@ node {
 	    echo 'echo Maven build jiraSendBuildInfo start...'
 	     jiraSendBuildInfo site: 'balajisubramanian.atlassian.net'
 	    echo 'echo Maven jiraSendBuildInfo end ...'
-	    echo 'echo Maven jiraSendBuildInfo end ...'
 	    echo 'echo jiraSendDeploymentInfo site: balajisubramanian.atlassian.net start'
            jiraSendDeploymentInfo site: 'balajisubramanian.atlassian.net', environmentId: 'us-prod-1', environmentName: 'us-prod-1', environmentType: 'production'
         echo 'echo jiraSendDeploymentInfo site: balajisubramanian.atlassian.net end'
