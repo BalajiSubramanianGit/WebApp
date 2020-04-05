@@ -9,10 +9,12 @@ node {
  rtMaven.tool = "maven"
 
     stage('Clone sources') {
+	    echo 'Clone sources...'
         git url: 'https://github.com/BalajiSubramanianGit/WebApp.git'
     }
 
     stage('Artifactory configuration') {
+	     echo 'Artifactory configuration...'
         // Tool name from Jenkins configuration
         rtMaven.tool = "maven"
         // Set Artifactory repositories for dependencies resolution and artifacts deployment.
@@ -21,10 +23,12 @@ node {
     }
 
     stage('Maven build') {
+	    echo 'Maven build...'
         buildInfo = rtMaven.run pom: 'pom.xml', goals: 'clean install'
     }
 
     stage('Publish build info') {
+	    echo 'Publish build info...'
         server.publishBuildInfo buildInfo
     }
 	
@@ -37,6 +41,7 @@ node {
              }
              post {
                  always {
+			 echo 'Publish build info balajisubramanian...'
                      jiraSendBuildInfo site: 'balajisubramanian.atlassian.net'
                  }
              }
