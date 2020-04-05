@@ -9,12 +9,12 @@ node {
  rtMaven.tool = "maven"
 
     stage('Clone sources') {
-	    echo 'Clone sources...'
+	    echo 'echo Clone sources...'
         git url: 'https://github.com/BalajiSubramanianGit/WebApp.git'
     }
 
     stage('Artifactory configuration') {
-	     echo 'Artifactory configuration...'
+	     echo 'echo Artifactory configuration...'
         // Tool name from Jenkins configuration
         rtMaven.tool = "maven"
         // Set Artifactory repositories for dependencies resolution and artifacts deployment.
@@ -23,12 +23,12 @@ node {
     }
 
     stage('Maven build') {
-	    echo 'Maven build...'
+	    echo 'echo Maven build...'
         buildInfo = rtMaven.run pom: 'pom.xml', goals: 'clean install'
     }
 
     stage('Publish build info') {
-	    echo 'Publish build info...'
+	    echo 'echo Publish build info...'
         server.publishBuildInfo buildInfo
     }
 	
@@ -38,6 +38,7 @@ node {
    }
    post {
        always {
+	       echo 'echo jiraSendBuildInfo site: balajisubramanian.atlassian.net'
            jiraSendBuildInfo site: 'balajisubramanian.atlassian.net'
        }
    }
@@ -52,6 +53,7 @@ node {
    }
    post {
        always {
+	       echo 'echo jiraSendDeploymentInfo site: balajisubramanian.atlassian.net'
            jiraSendDeploymentInfo site: 'balajisubramanian.atlassian.net', environmentId: 'us-prod-1', environmentName: 'us-prod-1', environmentType: 'production'
        }
    }
