@@ -32,23 +32,6 @@ node {
         server.publishBuildInfo buildInfo
     }
 	
-	pipeline {
-     agent any
-     stages {
-         stage('Build') {
-             steps {
-                 echo 'Building...'
-             }
-             post {
-                 always {
-			 echo 'Publish build info balajisubramanian...'
-                     jiraSendBuildInfo site: 'balajisubramanian.atlassian.net'
-                 }
-             }
-         }
-     }
- }
-	
 	stage('Build') {
    steps {
        echo 'Building...'
